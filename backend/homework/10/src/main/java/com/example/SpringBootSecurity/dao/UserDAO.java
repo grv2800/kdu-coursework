@@ -1,10 +1,10 @@
 package com.example.SpringBootSecurity.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.SpringBootSecurity.model.Users;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserDAO {
