@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <style>
+        body {
+    background-color: #333; 
+    margin: 0; 
+    padding: 0;
+    color: white;
+}
+
+nav {
+    background-color: black;
+    overflow: hidden;
+    position: fixed;
+    width: 100%; 
+    top: 0; 
+    z-index: 1000;
+}
+/* .logo{
+    float: left;
+    background: black;
+    padding: 10px 20px;
+    height: 40px;
+}
+.logo img {
+    height: 40px; 
+} */
+.heading{
+    font-style: italic;
+    display: inline;
+    text-align: left;
+    height: 40px;   
+}
+
+
+nav > ul {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul > li {
+    float: right;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+h1 {
+    padding: 80px 40px 20px;
+    margin: 0;
+}
+aside {
+    display: inline;
+    
+ }
+
+.product-details { 
+    list-style-type: flex;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.product-details
+.product-details li {
+    flex: 1;
+}
+
+img {
+    width: 250px;
+    height: auto;
+    margin: 10px;
+}
+
+ #Categories{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+ }
+ #Categories li:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#categories li {
+    margin: 0 10px;
+}
+#contact form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+
+#contact form label {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#contact form input[type="text"],
+#contact form input[type="email"],
+#contact form input[type="password"],
+#contact form textarea {
+    width:98%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+#contact form input[type="submit"],
+#contact form input[type="reset"] {
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact form input[type="submit"]:hover+
+#contact form input[type="reset"]:hover {
+    background-color: #ccc;
+}
+footer{
+    text-align: center;
+}
+#content{
+    text-align: justify;
+}
+#Buy{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+}
+
+.button {
+    display: inline-block;
+    background-color: #ccc;
+    border:#ccc;
+    color: black; 
+    padding: 15px 32px; 
+    text-align: center;
+    display: inline;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button:hover {
+    size: 500px;
+    background-color: #4CAF50;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+
+        <nav class="navbar">
+            <h2 class="heading">The ecommerce Store</h2>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+            <h1 style="text-align: center;">Welcome to My E-commerce Store</h1>
+    </header>
+    
+    <main>
+        <section id="products">
+            <article>
+                <h2 >Featured Products:</h2>
+                <ul class="product-details">
+                </ul>
+                <img src="macbook.jpg" alt="Product Image" style="height: 350px;width: 470px;">
+                <img src="download.jpg" alt="Product Image" style="height: 350px;width:470px;">
+                <img src="product.jpg" alt="Product Image" style="height: 350px; width: 440px;">
+                <a id="Buy" class="button" href="#buy" target="_blank">Buy Now</a>    
+            </article>
+        </section>
+
+        <aside>
+            <h2>Categories:</h2>
+            <ul id="Categories">
+                <li>Electronics</li>
+                <li>Clothing</li>
+                <li>Fresh items</li>
+                <li>Shoes</li>
+                <li>Home Decor</li>
+                <li>Home Utility</li>
+                <li>Grocery Items</li>
+                <li>Furniture</li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <section id="about">
+        <h2>About Us:</h2>
+        <p><u>This is a brief description of our e-commerce store</u><sup>*</sup></p>
+        <p><i>This is using a </i><sub>subscript</sub> <i>tag</i></p>
+        <p id="content">
+            Our e-commerce website is a user-friendly platform designed to provide customers with a seamless shopping experience.
+             With a wide range of products, including electronics, clothing, and fresh items, we aim to cater to diverse consumer needs.
+            
+            Through our intuitive interface, customers can easily browse through featured products, view detailed descriptions, and make informed purchasing decisions. We prioritize user satisfaction and strive to ensure a hassle-free shopping journey from start to finish.
+            
+            </p>
+    </section>    
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name"><strong>Name:</strong></label><br>
+            <input type="text" id="name" name="name" tabindex="1"><br>
+            <br>    
+            <label for="email"><strong>Email:</strong></label><br>
+            <input type="email" id="email" name="email" tabindex="2"><br>
+            <br>
+            <label for="password"><strong>Password:</strong></label><br>
+            <input type="password" id="password" name="password" tabindex="3"><br><br>
+            <br>    
+            <label for="message"><strong>Message:</strong></label><br>
+            <textarea id="message" tabindex="4"></textarea><br>
+            <br>
+            <label for="gender"><strong>Gender:</strong></label><br>
+            <input type="radio" name="gender" id="male" tabindex="5"> 
+            <label for="male"><sup>Male</sup></label>
+            <input type="radio" name="gender" id="female" tabindex="6"> 
+            <label for="female">Female</label><br>
+            <br>
+            <label for="location"><strong>Region:</strong></label><br>
+            <label> <input type="checkbox"> Asia</label>
+            <label> <input type="checkbox"> US</label>
+            <label> <input type="checkbox"> Europe</label>
+            <label> <input type="checkbox"> Australia</label><br>
+            <br>
+            <label for="DOB:"><strong>DOB:</strong></label><br>
+            <input type="date"  tabindex="7"> 
+            <select>
+                <option selected disabled>--Select Month--</option> 
+                <option> <em>Jan</em> </option>
+                <option>Feb</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select><br>
+            <br>
+            <input type="submit" value="Submit" tabindex="8">
+            <input type="reset" value="Reset" tabindex="9">
+        </form>
+        <br>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+    </footer>
+
+
+</body>
+</html>
