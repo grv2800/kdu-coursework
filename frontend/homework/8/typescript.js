@@ -1,8 +1,8 @@
-var SearchApp = /** @class */ (function () {
-    function SearchApp() {
+var RecipeMania = /** @class */ (function () {
+    function RecipeMania() {
         this.recipes = [];
     }
-    SearchApp.prototype.fetchRecipesFromAPI = function () {
+    RecipeMania.prototype.fetchRecipesFromAPI = function () {
         var _this = this;
         return fetch("https://dummyjson.com/recipes").then(function (response) { return response.json(); }).
             then(function (data) {
@@ -18,7 +18,7 @@ var SearchApp = /** @class */ (function () {
                     timeTaken: recipe.prepTimeMinutes + recipe.cookTimeMinutes,
                     calorieCount: recipe.caloriesPerServing
                 }); });
-                console.log('Recipes fetched from the API:', _this.recipes);
+                console.log('Recipes fetched from the API');
             }
             else {
                 console.log('No recipes found in the response');
@@ -28,7 +28,7 @@ var SearchApp = /** @class */ (function () {
             console.log('error fetching recipes:', error);
         });
     };
-    SearchApp.prototype.searchRecipes = function (query) {
+    RecipeMania.prototype.searchRecipes = function (query) {
         return fetch("https://dummyjson.com/recipes/search?q=".concat(query)).then(function (response) { return response.json(); }).
             then(function (data) {
             console.log('recipes fetched corresponding the given query', data);
@@ -37,7 +37,7 @@ var SearchApp = /** @class */ (function () {
             console.log("error in fetching ", error);
         });
     };
-    SearchApp.prototype.printAllRecipes = function () {
+    RecipeMania.prototype.printAllRecipes = function () {
         this.recipes.map(function (recipe) {
             console.log("image:", recipe.image);
             console.log("name:", recipe.name);
@@ -49,7 +49,7 @@ var SearchApp = /** @class */ (function () {
             console.log("calories:", recipe.calorieCount);
         });
     };
-    return SearchApp;
+    return RecipeMania;
 }());
-var search = new SearchApp();
+var search = new RecipeMania();
 search.fetchRecipesFromAPI().then(function () { return search.searchRecipes("Brazilian Caipirinha"); });
