@@ -38,8 +38,6 @@
           </div>
         </div>
         <div class="graph">
-          <h5>graph</h5>
-          <div class="item"></div>
         </div>
       </div>
       <div class="right-container">
@@ -87,11 +85,8 @@
 
       function updateHistory(action) {
         const historyDiv = document.querySelector(".right-container");
-        const quantityInput = document.getElementById("quantity-input").value;
-        // const historyEntry = document.createElement("p");
-        // historyEntry.textContent = `${action} ${quantityInput} at $${document.getElementById("price-value").innerText}`;
-        const datetime = new Date().toLocaleString(); // Get current datetime
-
+        const quantityInput = document.getElementById("quantity-input").value;     
+        const datetime = new Date().toLocaleString(); 
         const mainDiv = document.createElement("div");
         mainDiv.classList.add("mainDiv");
 
