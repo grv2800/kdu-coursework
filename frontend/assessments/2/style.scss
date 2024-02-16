@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+nav {
+    background-color: #1871c2;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    height: 60px;
+    top: 0;
+}
+.main-container{
+    display: grid;
+    margin-top: 70px;
+    height: 100%;
+    grid-template-columns: repeat(4,1fr);
+    .left-container{
+        grid-column: span 3;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        .dashboard{
+            display: flex;
+            justify-content: space-evenly;  
+            margin-bottom: 10px;
+            #logo{
+                border: 1px solid #000;
+                width: 250px;
+                height: 60px;
+                padding: 0;
+                img{
+                    height: 100%;
+                    width: 80px;
+                }
+                h5{ margin-top: -10px;
+                    text-align: center;
+                    display: inline-block;
+                    font-size: 40px;    
+                }
+            }
+            #price{
+                display: flex;
+                justify-content: space-evenly;
+                width: 400px;
+                border: 1px solid #000;
+            }
+            #quantity-input{
+                text-align: center;
+                border: 1px solid #000;
+                height: 60px;
+                width: 250px;
+            }
+            .buttons{
+                button{
+                    height: 60px;
+                }
+                #buy{
+                    cursor: pointer;
+                    color: #2f9e44;
+                    background-color:#b2f2bb ;
+                    border:1px solid #2f9e44;
+                }
+                #sell{
+                    cursor: pointer;
+                    color: #e03131;
+                    background-color:#ffe9e9 ;
+                    border:1px solid #e03131;
+                }
+            }
+
+        }
+        .graph{
+            height: 500px;
+            display: grid;
+            grid-template-columns:repeat(7,100px);
+            grid-template-rows: repeat(4,125px);
+            border: 1px solid black;
+            position: relative;
+            .candlestick{
+                width: 20px;
+            }
+        }
+    }
+    .right-container{
+        grid-column: span 1;
+        border: 1px solid black;
+        .mainDiv{
+            border: 1px solid #000;
+            border-radius: 10px;
+            color: #000;
+            .quantityDiv{
+                font-size: 25px;
+            }
+            .actionDiv{
+                display: inline-block;
+                margin-left: 220px;
+            }
+            .datetimeDiv{
+                margin-top: -22px;
+            }
+        }
+    }
+}
