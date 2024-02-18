@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script defer src="client.js"></script>
+</head>
+<body>
+    <div class="main-container">
+    <div class="profile-icon">
+        <img src="profile-clas.png" alt="">
+    </div>
+    <div class="navigation-section">
+        <div class="head">
+            <img src="x.png" alt="">
+        </div>
+        <div class="home">
+            <img class="items" src="home.png" alt="">
+            <h1 class="heading"> Home</h1>
+        </div>
+        <div class="explore">
+            <img src="search.png" alt="">
+            <h1 class="heading"> Explore</h1>
+        </div>
+        <div class="notifications">
+            <img src="notifications.png" alt="">
+            <h1 class="heading"> Notifications</h1>
+        </div>
+        <div class="messages">
+            <img src="message.png" alt="">
+            <h1 class="heading"> Messages</h1>
+        </div>
+        <div class="grok">
+            <img src="Grok.png" alt="">
+            <h1 class="heading"> Grok</h1>
+        </div>
+        <div class="lists">
+            <img src="list.png" alt="">
+            <h1 class="heading"> Lists</h1>
+        </div>
+        <div class="bookmark">
+            <img src="bookmark.png" alt="">
+            <h1 class="heading"> Bookmarks</h1>
+        </div>
+        <div class="communities">
+            <img src="communities.png" alt="">
+            <h1 class="heading"> Communities</h1>
+        </div>
+        <div class="premium">
+            <img src="x.png" alt="">
+            <h1 class="heading"> Premium</h1>
+        </div>
+        <div class="profiles">
+            <img src="profile.png" alt="">
+            <h1 class="heading"> Profile</h1>
+        </div>
+        <div class="more">
+            <img src="more.png" alt="">
+            <h1 class="heading"> More</h1>
+        </div>
+        <!-- mobile view classes -->
+        <div class="monetization">
+            <img src="monetization.png" alt="">
+            <h1 class="heading"> Monetization</h1>
+        </div>
+        <div class="settings">
+            <img src="settings.png" alt="">
+            <h1 class="heading"> Settings and Privacy</h1>
+        </div>
+        <div class="logout">
+            <img src="logout.png" alt="">
+            <h1 class="heading"> Log out</h1>
+        </div>
+        
+        <br>
+        <button id="post">
+            Post
+        </button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer>
+            <div class="profile">
+            <img id="#profile-pic" src="profile-pic.png" alt="">
+            <div class="sub-div"><h1>Nitesh Gupta</h1>
+                <br>
+            <h5>@nit_hck</h5></div>
+            <img src="profile-pic-2.png" alt="">
+            </div>
+        <footer>
+    </div>
+    <div class="floating-tweet-box-icon" >
+        <img src="floating-icon.png" alt="">
+    </div>
+
+    <div class="message-page" id="messagePage">
+       <div class="message-header">
+        <h3>Messages </h3>
+       </div> 
+        <div class="userList">
+
+        </div>
+    </div>
+    <div class="chatWindow">
+        <div id="messsages">
+
+        </div>
+        <div class="chat">
+            <input type="text" id="msgInput" placeholder="Enter your messsage" />
+            <button id="sendMessages"><img src="chat.png" alt="" /></button>
+          </div>
+     </div>    
+    <div class="tweet-box" >
+        <div class="tweet-bar">
+            <img id="arrow" src="arrow.png" alt="">
+            <img id="drafts" src="drafts.png" alt="">
+            <button class="tweet-btn">Post</button>
+        </div>
+        <div class="tweet-body">
+        <img src="profile-pic.png" alt="Profile Picture">
+        <div class="inner-box"> 
+            <textarea class="post-input" placeholder="What is happening?!"></textarea>
+            <img id="everyone_can_reply" src="mv_tweet_box.png" alt="Icon 0">
+            <div class="icons-container">
+                <img id="media" src="photo.png" alt="Icon 1">
+                <img src="gif.png" alt="Icon 2">
+                <img src="poll.png" alt="Icon 3">
+                <img src="smile.png" alt="Icon 4">
+                <img src="schedule.png" alt="Icon 5">
+                <img src="location.png" alt="Icon 5">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="new-post"> 
+            <img src="profile-pic.png" alt="Profile Picture">
+            <div class=" post">
+                <div class="inner-post">
+                    <h2>Nitesh Gupta<h2>
+                    <h5>@nit_hck<h5>
+                    <p>&middot; &nbsp;1s</p>
+                </div>
+                <div class="tweet-content">
+                        <div class="tweet-text">
+                            <span>Coffe in hand, bugs beware.Time to crush some code.
+                            <span class="hastag">#DeveloperLife</span>
+                            <span class="hastag">#Coding</span>
+                        </span>
+                        </div>
+                        <div class="tweet-react">
+                            <input type="image" src="comment-button.png" alt="comment" name="saveForm" class="comment-btn" id="show-comment-btn"/>
+                    
+                            <div class="retweet">
+                            <input type="image" src="retweet.png" alt="retweet" name="saveForm" class="retweet-btn" id="saveForm"/>
+                            <span class="total-count" >0</span>
+                            </div>
+                            
+                            <div class="like-post">
+                                <input type="image" src="like.png" alt="like" name="saveForm" class="like-btn" id="saveForm"/>
+                                 <span class="likes-count">0</span>
+                            </div>
+                            
+                            <img class="insights-btn" src="insights.png" alt="Insights">
+                            <img class="bookmark-btn" src="bookmark-tweet.png" alt="Bookmark">
+                            <img class="upload-btn" src="upload.png" alt="Upload">
+                        
+                        </div>
+                        <div id="comment-form" style="display: none;">
+                            <input type="text" id="comment-input" placeholder="Add a comment...">
+                            <button id="comment-submit-btn">Submit</button>
+                        </div>
+                        <ul id="comment-list">
+                        </ul>
+                    </div>
+
+        </div>
+
+        </div>      
+    </div>
+        
+</div>
+<script
+src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+crossorigin="anonymous"
+></script>
+
+</body>
+</html>
