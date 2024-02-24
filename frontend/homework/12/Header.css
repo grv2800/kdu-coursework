@@ -1,0 +1,17 @@
+.header {
+  background-color: #28a745;
+  color: white;
+  display: flex;
+  font-family: "Lato";
+  size: 100px;
+  justify-content: space-around;
+}
+.header h1 {
+  font-size: 40px;
+}
+.header #input {
+  height: 30px;
+  width: 450px;
+  margin-top: 30px;
+  margin-right: 10px;
+}/*# sourceMappingURL=Header.css.map */
