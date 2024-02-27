@@ -1,54 +1,70 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
-import { addItem } from "./TodoSlice";
-import { createUseStyles } from 'react-jss';
+import {
+  addItem,
+  deleteItem,
+  clearCompleted,
+  toggleCompleted,
+} from "./TodoSlice";
+import { createUseStyles } from "react-jss";
 import { Header } from "./Header";
 import { ListItem } from "./ListItem";
-
-interface ListItems {
+interface IListItems {
   id: number;
   text: string;
+  complete: boolean;
 }
-
 const useStyles = createUseStyles({
   list: {
-    margin: '10px',
-    border: '1px solid #000',
+    margin: "10px",
+    border: "1px solid #000",
   },
   listTitle: {
-    fontSize: '32px',
-    margin: '20px',
+    fontSize: "32px",
+    margin: "20px",
   },
   form: {
-    marginLeft: '10px',
+    marginLeft: "10px",
   },
   formTitle: {
-    fontSize: '32px',
-    marginBottom: '10px',
+    fontSize: "32px",
+    marginBottom: "10px",
   },
   itemInput: {
-    height: '30px',
+    height: "30px",
   },
   submitButton: {
-    marginLeft: '10px',
-    color: '#fff',
-    backgroundColor: '#343a40',
-    border: '2px solid #343a40',
-    borderRadius: '5px',
-    height: '40px',
+    marginLeft: "10px",
+    color: "#fff",
+    backgroundColor: "#343a40",
+    border: "2px solid #343a40",
+    borderRadius: "5px",
+    height: "40px",
   },
   listItem: {
-    border: '2px solid #000',
-    display: 'flex',
-    justifyContent: 'space-between',
-    listStyleType: 'none',
-    padding: '15px',
-    marginRight: '15px',
+    border: "2px solid #000",
+    display: "flex",
+    justifyContent: "space-between",
+    listStyleType: "none",
+    padding: "15px",
+    marginRight: "15px",
   },
   listItemImg: {
-    height: '30px',
-    width: '30px',
+    height: "30px",
+    width: "30px",
+  },
+  clearDiv:{
+    display:"flex",
+    justifyContent:"space-between"
+  },
+  clearButton:{
+    margin:"2rem",
+    height:"2rem",
+    backgroundColor:"#000",
+    color:"#fff",
+    border:"2px solid #000",
+    borderRadius:"1rem"
   }
 });
 
@@ -62,13 +78,22 @@ export function List() {
   function submitText() {
     const newID =
       listItems.length > 0 ? listItems[listItems.length - 1].id + 1 : 1;
-    const newItem: ListItems = {
+    const newItem: IListItems = {
       id: newID,
       text: inputText,
+      complete: false,
     };
     dispatch(addItem(newItem));
     setInputText("");
   }
+
+  const handleDelete = (id: number) => {
+    dispatch(deleteItem(id));
+  };
+
+  const handleClearCompleted = () => {
+    dispatch(clearCompleted());
+  };
 
   const filteredItems = listItems.filter((item) =>
     item.text.toLowerCase().includes(searchInput.toLowerCase())
@@ -94,13 +119,25 @@ export function List() {
             className={classes.itemInput}
             onChange={(event) => setInputText(event.target.value)}
           />
-          <button className={classes.submitButton} onClick={submitText}>Submit</button>
+          <button className={classes.submitButton} onClick={submitText}>
+            Submit
+          </button>
         </div>
-        <h2 className={classes.listTitle}>Items</h2>
+        <div className={classes.clearDiv}>
+          <h2 className={classes.listTitle}>Items</h2>
+          <button className={classes.clearButton} onClick={handleClearCompleted}>Clear Completed</button>
+        </div>
+
         <ul>
-          {filteredItems.length > 0
-            ? filteredItems.map((item) => <ListItem key={item.id} text={item.text} /> )
-            : listItems.map((item) => <ListItem key={item.id} text={item.text} />)}
+          {filteredItems.map((item) => (
+            <ListItem
+              key={item.id}
+              text={item.text}
+              completed={item.complete}
+              onDelete={() => handleDelete(item.id)}
+              onToggleCompleted={() => dispatch(toggleCompleted(item.id))}
+            />
+          ))}
         </ul>
       </div>
     </div>

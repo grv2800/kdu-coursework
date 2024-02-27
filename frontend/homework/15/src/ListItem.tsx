@@ -1,30 +1,61 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from "react-jss";
+import cross from "./cross.png";
 
 interface ListItemProps {
   text: string;
+  completed: boolean;
+  onDelete: () => void;
+  onToggleCompleted: () => void; 
 }
 
 const useStyles = createUseStyles({
   listItem: {
-    border: '2px solid #000',
-    display: 'flex',
-    listStyleType: 'none',
-    padding: '15px',
-    marginRight: '15px',
+    border: "2px solid #000",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "15px",
+    margin: "15px",
+    textDecoration: "none",
+  },
+  listItemCompleted: {
+    textDecoration: "line-through",
   },
   listItemImg: {
-    height: '10px',
-    width: '10px',
-  }
+    height: "20px",
+    width: "20px",
+    cursor: "pointer",
+  },
 });
 
-export function ListItem({ text }: ListItemProps) {
+export function ListItem({
+  text,
+  completed,
+  onDelete,
+  onToggleCompleted,
+}: ListItemProps) {
   const classes = useStyles();
 
   return (
-    <div className={classes.listItem}>
-      <li>{text}</li>
-      <img src="cross.png" alt="" className={classes.listItemImg} />
-    </div>
+    <li
+      className={`${classes.listItem} ${
+        completed ? classes.listItemCompleted : ""
+      }`}
+    >
+      <div>
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={onToggleCompleted}
+        />
+        <label>{text}</label>
+      </div>
+      <img
+        src={cross}
+        alt=""
+        className={classes.listItemImg}
+        onClick={onDelete}
+      />
+    </li>
   );
 }

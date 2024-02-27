@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
     display: "flex",
     fontFamily: "Lato",
     justifyContent: "space-around",
+    alignItems:'center',
     fontSize: "100px",
   },
   h1: {
@@ -21,9 +22,10 @@ const useStyles = createUseStyles({
   input: {
     height: "30px",
     width: "450px",
-    marginTop: "1rem",
-    marginRight: "10px",
   },
+  searchField:{
+    marginBottom:"2rem"
+  }
 });
 
 export function Header({ searchInput, setSearchInput }: Readonly<HeaderProps>) {
@@ -37,7 +39,7 @@ export function Header({ searchInput, setSearchInput }: Readonly<HeaderProps>) {
   return (
     <div className={classes.header}>
       <h1 className={classes.h1}>Item Lister</h1>
-      <div>
+      <div className={classes.searchField}>
           <input
             type="text"
             placeholder="Search Items.."
