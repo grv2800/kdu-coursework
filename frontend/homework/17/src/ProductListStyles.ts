@@ -7,7 +7,8 @@ export const useStyles = createUseStyles(() => ({
     flexWrap:"wrap"
   },
   pageHeading:{
-    marginTop:"100rem"
+    marginTop:"7rem",
+    marginLeft:"30rem",
   },
   pageSubHeading:{
     color:"#2a2a72"  

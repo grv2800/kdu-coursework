@@ -18,8 +18,8 @@ export const snackbarSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getProducts.fulfilled, (state, action) => {
-        state.message = action.payload;
+      .addCase(getProducts.fulfilled, (state) => {
+        state.message = "Products loaded successfully";
         state.type = "success";
       })
       .addCase(getProducts.rejected, (state, action) => {

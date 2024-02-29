@@ -7,8 +7,6 @@ import { AppDispatch, RootState } from "./store";
 import { setLoading } from "./LoaderSlice";
 import { getProducts } from "./thunk/getProducts";
 import { Loader } from "./Loader";
-import { Snackbar } from "./SnackBar";
-
 
 const App: React.FC = () => {
   const products = useSelector((state: RootState) => state.products.products);
@@ -20,7 +18,7 @@ const App: React.FC = () => {
       dispatch(setLoading(false));
     });
   }, [dispatch]);
-  
+
   return (
     <ProductProvider>
       {loader ? (
@@ -32,7 +30,6 @@ const App: React.FC = () => {
           </Routes>
         </BrowserRouter>
       )}
-      <Snackbar />
     </ProductProvider>
   );
 };

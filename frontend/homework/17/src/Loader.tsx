@@ -1,6 +1,9 @@
 import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles({
     loader: {
+      display:"flex",
+      justifyContent:"center",
+      marginLeft:"40rem",
       border: '16px solid #f3f3f3',
       borderTop: '16px solid #3498db',
       borderRadius: '50%',
