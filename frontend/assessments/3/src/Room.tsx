@@ -1,14 +1,64 @@
 import { useState } from "react";
 import { RoomType, AddOn } from "./interface";
 import { Calendar } from "./Calender";
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-    header:{
-        marginTop:"5rem"
+  body: {
+    color: "#000",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#fff",
+    marginLeft: "5rem",
+    display: "flex",
+    flexDirection: "column",
+  },
+  header: { 
+    marginBottom: "1rem",
+    marginLeft: "15rem",
+  },
+  ItemHeader: {
+    display:"flex",
+    width: "170%",
+    height: "3rem",
+    marginTop: "4rem",
+    backgroundColor: "#f08a5d",
+    color: "#fff",
+    fontSize: "1.2rem",
+    alignItems: "center",
+  },
+  items: {
+    listStyleItem: "none",
+    backgroundColor: "#fff",
+    border:"2px solid black", 
+    padding: "0.5rem", 
+    marginBottom: "0.5rem",
+    marginLeft:"1rem",
+    marginTop:"0.5rem"
+  },
+  itemList: {
+    display: "flex",
+  },
+  submitButton: {
+    marginTop: "4rem",
+    marginLeft: "5rem",
+    backgroundColor: "#f08a5d",
+    color: "#fff",
+    "&:disabled": {
+      opacity: "0.5",
     },
-    orangeBackground: {
-    backgroundColor: 'orange',
+  },
+  calendar: {
+    backgroundColor: "#fff",
+    padding: "1rem",
+    border: "2px solid #000", 
+    borderRadius: "5px", 
+    marginTop: "1rem", 
+  },
+  cost: {
+    marginTop: '1rem', 
+    marginLeft: '5rem', 
+    fontSize: '1.5rem', 
   },
 });
 
@@ -20,7 +70,9 @@ export function Room({ rooms }: Readonly<IRoomProps>) {
   const classes = useStyles();
   const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
   const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(
+    null
+  );
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [totalCost, setTotalCost] = useState<number>(0);
 
@@ -48,7 +100,10 @@ export function Room({ rooms }: Readonly<IRoomProps>) {
   };
 
   const handleSubmit = () => {
-    if (!isValidDate(selectedStartDate) || !isValidDate(selectedEndDate)) {
+    if (
+      !isValidDate(selectedStartDate) ||
+      !isValidDate(selectedEndDate)
+    ) {
       alert("Please select valid start and end dates.");
       return;
     }
@@ -67,37 +122,47 @@ export function Room({ rooms }: Readonly<IRoomProps>) {
     return date instanceof Date && !isNaN(date.getTime());
   };
 
-  const isSubmitEnabled = selectedRoom && selectedStartDate && selectedEndDate && selectedAddOns;
+  const isSubmitEnabled =
+    selectedRoom && selectedStartDate && selectedEndDate && selectedAddOns;
 
   return (
-    <div>
+    <div className={classes.body}>
       <h1 className={classes.header}>Hotel Booking</h1>
       <div>
-        <p className={classes.orangeBackground}>Select Room Type</p>
-        <ul>
+        <p className={classes.ItemHeader}>Select Room Type</p>
+        <ul className={classes.itemList}>
           {rooms.map((room) => (
-            <li key={room.id} onClick={() => setSelectedRoom(room)}>
+            <li
+              className={classes.items} 
+              key={room.id}
+              onClick={() => setSelectedRoom(room)}
+            >
               {room.name}
             </li>
           ))}
         </ul>
       </div>
       <div>
-        <p className={classes.orangeBackground}>Select Date</p>
-        <Calendar
-          startDate={selectedStartDate || new Date()}
-          endDate={selectedEndDate || new Date()}
-          onStartDateChange={(date) => setSelectedStartDate(date)}
-          onEndDateChange={(date) => setSelectedEndDate(date)}
-        />
+        <p className={classes.ItemHeader}>Select Date</p>
+        <div className={classes.calendar}> 
+          <Calendar
+            startDate={selectedStartDate || new Date()}
+            endDate={selectedEndDate || new Date()}
+            onStartDateChange={(date) => setSelectedStartDate(date)}
+            onEndDateChange={(date) => setSelectedEndDate(date)}
+          />
+        </div>
       </div>
       <div>
-        <p className={classes.orangeBackground}>Select Additional Add ons/preferences</p>
+        <p className={classes.ItemHeader}>
+          Select Additional Add ons/preferences
+        </p>
         {selectedRoom && (
           <div>
-            <ul>
+            <ul className={classes.itemList}>
               {selectedRoom.addOns.map((addOn: AddOn, index: number) => (
                 <li
+                  className={classes.items}
                   key={index}
                   onClick={() =>
                     setSelectedAddOns((prevAddOns) => [...prevAddOns, addOn])
@@ -111,10 +176,16 @@ export function Room({ rooms }: Readonly<IRoomProps>) {
         )}
       </div>
 
-      <button onClick={handleSubmit} disabled={!isSubmitEnabled}>
+      <button
+        className={classes.submitButton}
+        onClick={handleSubmit}
+        disabled={!isSubmitEnabled}
+      >
         Submit
       </button>
-      {totalCost > 0 && <div>Cost + 18%GST : ${totalCost.toFixed(2)}</div>}
+      {totalCost > 0 && (
+        <h2 className={classes.cost}>Cost + 18%GST : {totalCost.toFixed(2)} INR</h2>
+      )}    
     </div>
   );
 }
