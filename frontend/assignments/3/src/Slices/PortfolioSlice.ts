@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Itransactions } from "../config/interface";
 import { getTransactions } from "../thunk/getTransactions";
+import { getUserTransactions } from "../thunk/getUserTransactions";
 
 interface IProductList {
   transactions: Itransactions[];
@@ -28,6 +29,14 @@ export const PortfolioSlice = createSlice({
         state.state = "fulfilled";
       })
       .addCase(getTransactions.rejected, (state, action) => {
+        state.error = action.payload as string;
+        state.state = "error";
+      })
+      .addCase(getUserTransactions.fulfilled, (state, action) => {
+        state.transactions.push(...action.payload);
+        state.state = "fulfilled";
+      })
+      .addCase(getUserTransactions.rejected, (state, action) => {
         state.error = action.payload as string;
         state.state = "error";
       });

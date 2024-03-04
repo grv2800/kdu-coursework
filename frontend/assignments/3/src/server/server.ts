@@ -1,3 +1,5 @@
+import { log } from "console";
+import cors from "cors";
 import express from "express";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
@@ -7,7 +9,7 @@ const server = http.createServer(app);
 
 const priceHistory: { priceChange: number; color: string; height: number }[] =
   [];
-let walletBalance = 2100;
+let walletBalance = 100000;
 
 const io = new SocketIO(server, {
   cors: {
@@ -24,10 +26,11 @@ function generatePriceChange(): number {
 }
 
 function generateCandlestick() {
-  const priceChange = generatePriceChange();
+  const priceChange = generatePriceChange()-250;
+  const color = priceChange >= 0 ? "green" : "red";
   const candlestick = {
     priceChange: priceChange,
-    color: priceChange >= 0 ? "green" : "red",
+    color: color,
     height: Math.abs(priceChange) + 1,
   };
   return candlestick;
@@ -39,9 +42,8 @@ function sendCandlestick() {
   io.emit("candlestick", candlestick);
 }
 
-setInterval(sendCandlestick, 5000);
-
 app.use(express.json());
+app.use(cors());
 const transactions: {
   stock_name: string;
   stock_symbol: string;
@@ -51,7 +53,9 @@ const transactions: {
 }[] = [];
 
 app.post("/api/transaction/buy", (req, res) => {
-  const { stock_name, stock_symbol, transaction_price, timestamp } = req.body;
+  const { stock_name, stock_symbol, transaction_price } = req.body;
+  const timestamp = new Date().toISOString();
+  
   if (transaction_price > walletBalance) {
     const status = "Failed";
     transactions.push({
@@ -61,46 +65,53 @@ app.post("/api/transaction/buy", (req, res) => {
       timestamp,
       status,
     });
-    return res
-      .status(400)
-      .json({
-        status: "Failed",
-        message: "Transaction amount exceeds wallet balance",
-      });
+    return res.status(400).json({
+      status: "Failed",
+      message: "Transaction amount exceeds wallet balance",
+    });
   }
+  else{
   walletBalance -= transaction_price;
   transactions.push({
     stock_name,
     stock_symbol,
     transaction_price,
     timestamp,
-    status: "Success",
+    status: "Passed",
   });
-  return res.status(200).json({ 
-    status: 'Success',
+  return res.status(200).json({
+    status: "Passed",
     stock_name,
     stock_symbol,
     transaction_price,
-    timestamp
+    timestamp,
+  })
+};
 });
-});
+
 app.post("/api/transaction/sell", (req, res) => {
-  const { stock_name, stock_symbol, transaction_price, timestamp } = req.body;
+  const { stock_name, stock_symbol, transaction_price } = req.body;
+  const timestamp = new Date().toISOString();
+  
   walletBalance += transaction_price;
   transactions.push({
     stock_name,
     stock_symbol,
     transaction_price,
     timestamp,
-    status: "Success",
+    status: "Passed",
   });
-  return res.status(200).json({ 
-    status: 'Success',
+  return res.status(200).json({
+    status: "Passed",
     stock_name,
     stock_symbol,
     transaction_price,
-    timestamp
+    timestamp,
+  });
 });
+app.get("/api/transactions", (req, res) => {
+  console.log(transactions);
+  res.status(200).json(transactions);
 });
 server.listen(3001, () => {
   console.log(`Server running on port 3001`);
