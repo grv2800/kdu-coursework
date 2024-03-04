@@ -26,7 +26,7 @@ function generatePriceChange(): number {
 }
 
 function generateCandlestick() {
-  const priceChange = generatePriceChange()-250;
+  const priceChange = generatePriceChange();
   const color = priceChange >= 0 ? "green" : "red";
   const candlestick = {
     priceChange: priceChange,
