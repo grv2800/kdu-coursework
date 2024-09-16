@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h2>KDU Stock Market Dashboard</h2>
+      </nav>
+    </header>
+
+    <div class="main-container">
+      <div class="left-container">
+        <div class="dashboard">
+          <div id="logo">
+            <img
+              src="https://mir-cdn.behance.net/v1/rendition/projects/404/af1307136664867.Y3JvcCw1NzUz"
+              alt=""
+            />
+            <h5>zomato</h5>
+          </div>
+          <div id="price">
+            <h5>price</h5>
+            <p id="price-value">14578</p>
+          </div>
+          <div id="quantity">
+            <input type="number" id="quantity-input" placeholder="Enter QTY" />
+          </div>
+          <div class="buttons">
+            <button id="buy">BUY</button>
+          </div>
+          <div class="buttons">
+            <button id="sell">SELL</button>
+          </div>
+        </div>
+        <div class="graph">
+        </div>
+      </div>
+      <div class="right-container">
+        <h2>History</h2>
+      </div>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+      integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const socket = io("http://localhost:3001");
+
+      socket.on("candlestick", (candlestick) => {
+        const graphContainer = document.querySelector(".graph");
+        const newCandlestick = document.createElement("div");
+        newCandlestick.classList.add("candlestick");
+
+        newCandlestick.style.backgroundColor = candlestick.color;
+        newCandlestick.style.height = `${candlestick.height}px`;
+        graphContainer.appendChild(newCandlestick);
+
+        updatePrice(candlestick);
+      });
+
+      function updatePrice(candlestick) {
+        const priceElement = document.getElementById("price-value");
+        const currentPrice = parseFloat(priceElement.innerText);
+        const newPrice = currentPrice + candlestick.priceChange;
+        priceElement.innerText = newPrice;
+        if (candlestick.color === "green") {
+          priceElement.style.color = "green";
+        } else {
+          priceElement.style.color = "red";
+        }
+      }
+      document.getElementById("buy").addEventListener("click", () => {
+        updateHistory("BUY");
+      });
+
+      document.getElementById("sell").addEventListener("click", () => {
+        updateHistory("SELL");
+      });
+
+      function updateHistory(action) {
+        const historyDiv = document.querySelector(".right-container");
+        const quantityInput = document.getElementById("quantity-input").value;     
+        const datetime = new Date().toLocaleString(); 
+        const mainDiv = document.createElement("div");
+        mainDiv.classList.add("mainDiv");
+
+        const quantityDiv = document.createElement("div");
+        quantityDiv.classList.add("quantityDiv");
+        quantityDiv.textContent = `${quantityInput} Stocks`;
+
+        const actionDiv = document.createElement("div");
+        actionDiv.classList.add("actionDiv");
+        actionDiv.textContent = `${action}`;
+
+        const datetimeDiv = document.createElement("div");
+        datetimeDiv.classList.add("datetimeDiv");
+        datetimeDiv.textContent = `${datetime}`;
+
+        if (action === "BUY") {
+          actionDiv.style.color = "green";
+        } else {
+          actionDiv.style.color = "red";
+        }
+        mainDiv.appendChild(quantityDiv);
+        mainDiv.appendChild(actionDiv);
+        mainDiv.appendChild(datetimeDiv);
+
+        historyDiv.appendChild(mainDiv);
+      }
+    </script>
+  </body>
+</html>
