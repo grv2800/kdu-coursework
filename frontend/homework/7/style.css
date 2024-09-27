@@ -1,0 +1,46 @@
+body{
+    background-color: rgb(134 136 155);
+    color: white;
+}
+nav{
+    background-color: #dfe1e6;
+    color: black;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%; 
+    top: 0; 
+    z-index: 1000;
+}
+.chat{
+    display: flex;
+    justify-content: space-evenly;
+    bottom: 0;
+    position: fixed; 
+    width:98%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    #msgInput{
+        width: 100%;
+    }
+    #sendMessages img{
+        height: 40px;
+        width: 40px;
+    }
+}
+#user,#sender{
+    display: none;
+}
+.icon{
+    
+    height: 30px;
+    width: 30px;
+    
+}
+
+#messsages p {
+    overflow: hidden;
+    font-size: 25px; 
+  }
+  
